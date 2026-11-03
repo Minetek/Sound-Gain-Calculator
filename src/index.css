@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  /* Light mode */
+  :root.light {
+    --background: 220 15% 97%;
+    --foreground: 224 71% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+
+    --primary: 210 100% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 220 20% 30%;
+
+    --muted: 220 10% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 210 100% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 220 14% 90%;
+    --input: 220 14% 88%;
+    --ring: 210 100% 45%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 224 71% 4%;
+    --sidebar-primary: 210 100% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 95%;
+    --sidebar-accent-foreground: 224 71% 4%;
+    --sidebar-border: 220 14% 90%;
+    --sidebar-ring: 210 100% 45%;
+
+    --surface-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 4px 6px -1px rgba(0,0,0,0.08);
+    --surface-glow: 0 0 0 1px hsl(210 100% 45% / 0.2), 0 8px 24px -4px hsl(210 100% 45% / 0.08);
+  }
+
+  /* Dark mode (default) */
+  :root.dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 95%;
+
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 15%;
+    --secondary-foreground: 0 0% 80%;
+
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 50%;
+
+    --accent: 210 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 240 5% 12%;
+    --input: 240 5% 12%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 5% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 240 5% 12%;
+    --sidebar-ring: 210 100% 50%;
+
+    --surface-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 8px 16px -4px rgba(0,0,0,0.4);
+    --surface-glow: 0 0 0 1px hsl(210 100% 50% / 0.3), 0 8px 24px -4px hsl(210 100% 50% / 0.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  :root.dark ::-webkit-scrollbar-track {
+    background: hsl(240 10% 3.9%);
+  }
+  :root.dark ::-webkit-scrollbar-thumb {
+    background: hsl(240 5% 20%);
+    border-radius: 3px;
+  }
+  :root.light ::-webkit-scrollbar-track {
+    background: hsl(220 15% 97%);
+  }
+  :root.light ::-webkit-scrollbar-thumb {
+    background: hsl(220 14% 82%);
+    border-radius: 3px;
+  }
+
+  /* Invert white logo on light bg */
+  :root.light .logo-light-invert {
+    filter: brightness(0) saturate(100%);
+  }
+}
+
+@layer utilities {
+  .surface-card {
+    background: hsl(var(--card));
+    box-shadow: var(--surface-shadow);
+    border-radius: 16px;
+  }
+
+  .surface-glow {
+    box-shadow: var(--surface-glow);
+  }
+
+  .text-label {
+    @apply text-xs font-bold uppercase tracking-widest text-muted-foreground;
+  }
+
+  .text-metric {
+    font-family: 'Geist Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .module-focus {
+    @apply transition-shadow duration-200;
+  }
+  .module-focus:focus-within {
+    box-shadow: 0 0 0 2px hsl(210 100% 45% / 0.4), 0 0 4px hsl(210 100% 45% / 0.2);
+  }
+
+  .minetek-cta {
+    @apply inline-flex items-center justify-center gap-2.5 text-sm font-bold tracking-wide text-foreground transition-all duration-200;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1.5px solid hsl(0 0% 30%);
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .minetek-cta:hover {
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+  }
+
+  .minetek-cta-primary {
+    @apply inline-flex items-center justify-center gap-2.5 text-sm font-bold tracking-wide transition-all duration-200;
+    padding: 16px 40px;
+    border-radius: 999px;
+    border: none;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .minetek-cta-primary:hover {
+    filter: brightness(1.15);
+    transform: scale(1.02);
+  }
+
+  .minetek-cta-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: hsl(180 70% 50%);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .minetek-cta-primary .minetek-cta-dot {
+    background: hsl(180 100% 70%);
+  }
+}
